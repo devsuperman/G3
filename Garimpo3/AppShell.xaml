@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Garimpo3.Views"
+       xmlns:peons="clr-namespace:Garimpo3.Views.Peons"
        Title="Garimpo3"
        x:Class="Garimpo3.AppShell">
 
@@ -32,8 +33,9 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Peões" Icon="icon_about.png" Route="Page1" ContentTemplate="{DataTemplate local:Page1}" />
-        <ShellContent Title="Count" Icon="icon_about.png" Route="Count" ContentTemplate="{DataTemplate local:CountPage}" />        
+        <ShellContent Title="Page 1" Icon="icon_about.png" Route="Page1" ContentTemplate="{DataTemplate local:Page1}" />
+        <ShellContent Title="Count" Icon="icon_about.png" Route="Count" ContentTemplate="{DataTemplate local:CountPage}" />
+        <ShellContent Title="Peões" Icon="icon_about.png" Route="PeonsPage" ContentTemplate="{DataTemplate peons:PeonsPage}" />
     </TabBar>
     
 </Shell>

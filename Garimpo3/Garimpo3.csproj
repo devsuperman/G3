@@ -13,16 +13,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\PeonsPage.xaml.cs">
+    <Compile Update="Views\Peons\NewPeonPage.xaml.cs">
+      <DependentUpon>NewPeonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Peons\PeonsPage.xaml.cs">
       <DependentUpon>PeonsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\Peons\DetailsPeonPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Peons\NewPeonPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\CountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PeonsPage.xaml">
+    <EmbeddedResource Update="Views\Peons\PeonsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Page1.xaml">

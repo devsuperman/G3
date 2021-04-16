@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Garimpo3.Views.Peons.PeonsPage"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"
+             xmlns:models="clr-namespace:Garimpo3.Models"
+             x:DataType="viewmodels:PeonsViewModel"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddPeonCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ListView x:Name="MyListView"
+            ItemsSource="{Binding Peons}"
+            CachingStrategy="RecycleElement">       
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="models:Peon">
+                <TextCell Text="{Binding Name}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+
+    </ListView>
+</ContentPage>

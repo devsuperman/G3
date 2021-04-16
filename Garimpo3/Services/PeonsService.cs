@@ -19,10 +19,11 @@ namespace Garimpo3.Services
             await db.CreateTableAsync<Peon>();
         }
 
-        public static async Task<int> AddAsync(Peon peao)
+        public static async Task<int> AddAsync(string name)
         {
             await Init();
-            return await db.InsertAsync(peao);
+            var peon = new Peon(name);
+            return await db.InsertAsync(peon);
         }
 
         public static async Task<int> UpdateAsync(Peon peao)
