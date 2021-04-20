@@ -3,13 +3,9 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Garimpo3.Views"
        xmlns:peons="clr-namespace:Garimpo3.Views.Peons"
+       xmlns:productions="clr-namespace:Garimpo3.Views.Productions"
        Title="Garimpo3"
        x:Class="Garimpo3.AppShell">
-
-    <!--
-        The overall app visual hierarchy is defined here, along with navigation.    
-        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
-    -->
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -34,6 +30,7 @@
 
     <TabBar>
         <ShellContent Title="Count" Icon="icon_about.png" Route="Count" ContentTemplate="{DataTemplate local:CountPage}" />
+        <ShellContent Title="Despescadas" Icon="icon_about.png" Route="ProductionsPage" ContentTemplate="{DataTemplate productions:ProductionsPage}" />
         <ShellContent Title="Peões" Icon="icon_about.png" Route="PeonsPage" ContentTemplate="{DataTemplate peons:PeonsPage}" />
     </TabBar>
     
