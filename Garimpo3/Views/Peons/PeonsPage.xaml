@@ -18,7 +18,7 @@
         <ToolbarItem Text="Add" Command="{Binding AddPeonCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ListView CachingStrategy="RecycleElement">
+    <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding Peons}">
 
         <ListView.Behaviors>
             <xct:EventToCommandBehavior
@@ -29,8 +29,8 @@
         </ListView.Behaviors>
 
         <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:Production">
-                <TextCell Text="{Binding Date}" />
+            <DataTemplate x:DataType="models:Peon">
+                <TextCell Text="{Binding Name}" />
             </DataTemplate>
         </ListView.ItemTemplate>
 

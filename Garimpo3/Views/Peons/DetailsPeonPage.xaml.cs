@@ -3,8 +3,8 @@ using Xamarin.Forms.Xaml;
 
 namespace Garimpo3.Views.Peons
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     [QueryProperty("id","id")]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailsPeonPage : ContentPage
     {
         public string id { get; set; }
@@ -18,12 +18,9 @@ namespace Garimpo3.Views.Peons
             base.OnAppearing();
             
             int.TryParse(id, out var result);
-            var peon = await Services.PeonsService.GetAsync(result);
 
-            BindingContext = peon;
-        }
-
-        
+            BindingContext = await Services.PeonsService.GetAsync(result); ;
+        }        
 
         private async void Button_Clicked(object sender, System.EventArgs e)
         {

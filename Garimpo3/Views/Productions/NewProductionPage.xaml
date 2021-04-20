@@ -15,7 +15,7 @@
             <Label Text="Data"/>
             <DatePicker Date="{Binding Date}"/>
             <Label Text="Quantidade(g)"/>
-            <Entry BindingContext="{Binding Amount}"/>
+            <Entry BindingContext="{Binding Amount}" Keyboard="Numeric"/>
 
             <Button Text="Salvar" Command="{Binding SaveCommand}"/>
         </StackLayout>

@@ -13,6 +13,7 @@ namespace Garimpo3.Views.Peons
         {
             InitializeComponent();
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

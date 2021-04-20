@@ -20,12 +20,12 @@ namespace Garimpo3.ViewModels.Peons
             this.id = id;
             Title = "Editar Peão";
             SaveCommand = new AsyncCommand(Save);
-            LoadPeon().Wait();
+            LoadPeon();
         }
-        async Task LoadPeon()
+        void LoadPeon()
         {
             IsBusy = true;
-            var peon = await Services.PeonsService.GetAsync(id);
+            var peon = Task.Run(() => Services.PeonsService.GetAsync(id)).Result;
 
             Name = peon.Name;
             Active = peon.Active;

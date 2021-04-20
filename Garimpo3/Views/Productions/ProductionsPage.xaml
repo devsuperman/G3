@@ -2,19 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Garimpo3.Views.Productions.ProductionsPage"
-             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Productions"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Productions"             
+             xmlns:models="clr-namespace:Garimpo3.Models"
              x:DataType="viewmodels:ProductionsViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding Productions}">
+                
+                <ListView.Behaviors>
+                    <xct:EventToCommandBehavior
+                        EventName="ItemTapped"
+                        Command="{Binding DetailsCommand}"
+                        EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
+                </ListView.Behaviors>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Production">
+                        <TextCell Text="{Binding DateText}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,10 +7,15 @@
              Title="Peão">
     <ContentPage.Content>        
         <StackLayout>
+            
             <Label Text="Nome"/>
-            <Label Text="{Binding Name}"/>            
+            <Label Text="{Binding Name}"/>
+
+            <Label Text="Ativo"/>
             <Switch IsToggled="{Binding Active}" IsEnabled="False"></Switch>
+            
             <Button Text="Editar" Clicked="Button_Clicked"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

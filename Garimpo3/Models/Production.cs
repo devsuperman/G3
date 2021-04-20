@@ -18,6 +18,13 @@ namespace Garimpo3.Models
         [PrimaryKey,AutoIncrement]
         public int Id { get; set; }
         public DateTime Date { get; set; }
+        public string DateText => this.Date.ToShortDateString();
         public decimal Amount { get; set; }
+
+        internal void Update(DateTime date, decimal amount)
+        {
+            this.Date = date;
+            this.Amount = amount;
+        }
     }
 }

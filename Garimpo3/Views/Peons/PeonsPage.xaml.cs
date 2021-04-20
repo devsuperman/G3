@@ -9,12 +9,9 @@ namespace Garimpo3.Views.Peons
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PeonsPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
-
         public PeonsPage()
         {
             InitializeComponent();
-            BindingContext = new PeonsViewModel();
         }
 
         protected override void OnAppearing()
