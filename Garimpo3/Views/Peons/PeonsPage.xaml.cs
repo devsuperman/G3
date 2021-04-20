@@ -15,6 +15,12 @@ namespace Garimpo3.Views.Peons
         {
             InitializeComponent();
             BindingContext = new PeonsViewModel();
-        }        
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = new PeonsViewModel();                
+        }
     }
 }

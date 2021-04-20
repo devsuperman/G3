@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Garimpo3.Views.Peons.EditPeonPage"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"
+             x:DataType="viewmodels:EditPeonViewModel"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Nome" />
+            <Entry Text="{Binding Name}"/>
+
+            <Label Text="Ativo" />
+            <Switch IsToggled="{Binding Active}"></Switch>
+
+            <Button Text="Salvar"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Command="{Binding SaveCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

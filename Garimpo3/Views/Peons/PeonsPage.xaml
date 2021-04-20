@@ -5,7 +5,14 @@
              xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"
              xmlns:models="clr-namespace:Garimpo3.Models"
              x:DataType="viewmodels:PeonsViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddPeonCommand}"></ToolbarItem>
@@ -13,7 +20,15 @@
 
     <ListView x:Name="MyListView"
             ItemsSource="{Binding Peons}"
-            CachingStrategy="RecycleElement">       
+            CachingStrategy="RecycleElement">
+
+        <ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                EventName="ItemTapped"
+                Command="{Binding DetailsPeonCommand}"
+                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}">
+            </xct:EventToCommandBehavior>
+        </ListView.Behaviors>
 
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="models:Peon">

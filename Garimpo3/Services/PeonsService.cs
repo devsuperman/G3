@@ -15,7 +15,8 @@ namespace Garimpo3.Services
             if (db != null)
                 return;
 
-            db = new SQLiteAsyncConnection(Path.Combine(Xamarin.Essentials.FileSystem.AppDataDirectory, "peoes.db"));
+            var path = Path.Combine(Xamarin.Essentials.FileSystem.AppDataDirectory, "peoes.db");
+            db = new SQLiteAsyncConnection(path);
             await db.CreateTableAsync<Peon>();
         }
 
@@ -38,10 +39,10 @@ namespace Garimpo3.Services
             return await db.DeleteAsync(peao);
         }
 
-        public static async Task<Peon > GetAsync(int id)
+        public static async Task<Peon> GetAsync(int id)
         {
             await Init();
-            return await db.Table<Peon>().FirstOrDefaultAsync(w => w.Id == id);
+            return await db.Table<Peon>().Where(w => w.Id == id).FirstOrDefaultAsync();
         }
 
         public static async Task<IEnumerable<Peon>> GetAllAsync()

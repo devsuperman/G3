@@ -1,5 +1,4 @@
-﻿using Garimpo3.Views;
-using Garimpo3.Views.Peons;
+﻿using Garimpo3.Views.Peons;
 using Xamarin.Forms;
 
 namespace Garimpo3
@@ -10,6 +9,8 @@ namespace Garimpo3
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(NewPeonPage), typeof(NewPeonPage));
+            Routing.RegisterRoute(nameof(DetailsPeonPage), typeof(DetailsPeonPage));
+            Routing.RegisterRoute(nameof(EditPeonPage), typeof(EditPeonPage));
         }
 
     }

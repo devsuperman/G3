@@ -16,6 +16,12 @@ namespace Garimpo3.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool Active { get; set; }
+        public bool Active { get; set; } = true;
+
+        internal void Update(string name, bool active)
+        {
+            this.Name = name;
+            this.Active = active;
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace Garimpo3.ViewModels.Peons
             if (peon is null)
                 return;
 
-            var route = $"{nameof(DetailsPeonPage)}?Id={peon.Id}";
+            var route = $"{nameof(DetailsPeonPage)}?id={peon.Id}";
             await Shell.Current.GoToAsync(route);
         }
 

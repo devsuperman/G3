@@ -13,6 +13,7 @@ namespace Garimpo3.ViewModels.Peons
 
         public AddPeonViewModel()
         {
+            Title = "Novo Peão";
             SaveCommand = new AsyncCommand(Save);
         }
 

@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Garimpo3.Views.Peons.DetailsPeonPage">
-    <ContentPage.Content>
+             x:Class="Garimpo3.Views.Peons.DetailsPeonPage"
+             xmlns:models="clr-namespace:Garimpo3.Models"             
+             x:DataType="models:Peon"
+             Title="Peão">
+    <ContentPage.Content>        
         <StackLayout>
-            <Label Text="Welcome to details peon page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Nome"/>
+            <Label Text="{Binding Name}"/>            
+            <Switch IsToggled="{Binding Active}" IsEnabled="False"></Switch>
+            <Button Text="Editar" Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
