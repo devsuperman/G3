@@ -7,6 +7,7 @@ namespace Garimpo3.ViewModels.Peons
     public class EditPeonViewModel : BaseViewModel
     {
         int id;
+        
         string name;
         public string Name { get => name; set => SetProperty(ref name, value); }
 
@@ -38,7 +39,7 @@ namespace Garimpo3.ViewModels.Peons
             IsBusy = true;
             var peon = await Services.PeonsService.GetAsync(id);
             
-            peon.Update(name, active);
+            peon.Update(Name, Active);
 
             await Services.PeonsService.UpdateAsync(peon);
             await Xamarin.Forms.Shell.Current.GoToAsync("..");

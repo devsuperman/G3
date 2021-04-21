@@ -6,13 +6,13 @@
              x:DataType="models:Peon"
              Title="Peão">
     <ContentPage.Content>        
-        <StackLayout>
+        <StackLayout Padding="20">
             
             <Label Text="Nome"/>
             <Label Text="{Binding Name}"/>
 
             <Label Text="Ativo"/>
-            <Switch IsToggled="{Binding Active}" IsEnabled="False"></Switch>
+            <Switch IsToggled="{Binding Active}" IsEnabled="False" HorizontalOptions="Start"></Switch>
             
             <Button Text="Editar" Clicked="Button_Clicked"/>
             

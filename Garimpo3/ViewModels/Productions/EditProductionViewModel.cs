@@ -7,10 +7,11 @@ namespace Garimpo3.ViewModels.Productions
 {
     public class EditProductionViewModel : BaseViewModel
     {
-        int id;
+        int id;        
         DateTime date;
-        string amount;
         public DateTime Date { get => date; set => SetProperty(ref date, value); }
+
+        string amount;
         public string Amount { get => amount; set => SetProperty(ref amount, value); }
         
         public AsyncCommand SaveCommand { get; }

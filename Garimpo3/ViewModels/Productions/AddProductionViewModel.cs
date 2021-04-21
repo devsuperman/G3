@@ -10,8 +10,8 @@ namespace Garimpo3.ViewModels.Productions
         DateTime date;
         public DateTime Date { get => date; set => SetProperty(ref date, value); }
 
-        decimal amount;
-        public decimal Amount { get => amount; set => SetProperty(ref amount, value); }
+        string amount;
+        public string Amount { get => amount; set => SetProperty(ref amount, value); }
 
         public AsyncCommand SaveCommand { get; }
 
@@ -24,7 +24,7 @@ namespace Garimpo3.ViewModels.Productions
 
         async Task Save()
         {
-            await Services.ProductionsService.AddAsync(Date, Amount);
+            await Services.ProductionsService.AddAsync(Date, Convert.ToDecimal(Amount));
             await Xamarin.Forms.Shell.Current.GoToAsync("..");
         }
     }

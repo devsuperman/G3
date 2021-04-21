@@ -6,13 +6,13 @@
              x:DataType="viewmodels:EditProductionViewModel"
              Title="{Binding Title}">    
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20">
             
             <Label Text="Data"/>
-            <DatePicker BindingContext="{Binding Date, Mode=TwoWay}"/>
+            <DatePicker Date="{Binding Date}"/>
             
             <Label Text="Quantidade"/>
-            <Entry BindingContext="{Binding Amount, Mode=TwoWay}"
+            <Entry Text="{Binding Amount}"
                    Keyboard="Numeric"/>
             
             <Button Text="Salvar"

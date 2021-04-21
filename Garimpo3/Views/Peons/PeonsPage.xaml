@@ -18,21 +18,24 @@
         <ToolbarItem Text="Add" Command="{Binding AddPeonCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding Peons}">
+    <StackLayout Padding="20">
 
-        <ListView.Behaviors>
-            <xct:EventToCommandBehavior
-                EventName="ItemTapped"
-                Command="{Binding DetailsPeonCommand}"
-                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}">
-            </xct:EventToCommandBehavior>
-        </ListView.Behaviors>
+        <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding Peons}">
 
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:Peon">
-                <TextCell Text="{Binding Name}" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <xct:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding DetailsPeonCommand}"
+                    EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}">
+                </xct:EventToCommandBehavior>
+            </ListView.Behaviors>
 
-    </ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Peon">
+                    <TextCell Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </StackLayout>
 </ContentPage>

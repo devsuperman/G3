@@ -11,7 +11,7 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20">
             <Label Text="Nome" />
             <Entry Text="{Binding Name}"/>
 

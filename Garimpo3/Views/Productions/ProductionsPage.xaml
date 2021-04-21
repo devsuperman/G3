@@ -19,7 +19,7 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20">
             <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding Productions}">
                 
                 <ListView.Behaviors>
