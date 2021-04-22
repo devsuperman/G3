@@ -17,6 +17,7 @@ namespace Garimpo3.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public bool Active { get; set; } = true;
+        public decimal Saldo { get; set; } = 0;
 
         internal void Update(string name, bool active)
         {

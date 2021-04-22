@@ -4,6 +4,7 @@
              x:Class="Garimpo3.Views.Productions.NewProductionPage"
              xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Productions"
              x:DataType="viewmodels:AddProductionViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Title="{Binding Title}">
 
     <ContentPage.BindingContext>
@@ -12,12 +13,79 @@
     
     <ContentPage.Content>
         <StackLayout Padding="20">
+            
             <Label Text="Data"/>
             <DatePicker Date="{Binding Date}"/>
+            
             <Label Text="Quantidade(g)"/>
             <Entry Text="{Binding Amount}" Keyboard="Numeric"/>
 
+            <Grid Margin="10,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Peão"/>
+                <Label Text="%" Grid.Column="1"/>
+                <Label Text="Comissão" Grid.Column="2"/>
+
+                <Picker Grid.Row="1" Grid.Column="0" Title="Selecione um Peão" 
+                        ItemsSource="{Binding AvailablePeons}" 
+                        ItemDisplayBinding="{Binding Name}">
+
+                    <Picker.Behaviors>
+                        <xct:EventToCommandBehavior
+                            EventName="SelectedIndexChanged"
+                            Command="{Binding UpdatePeonsCommand}"
+                            CommandParameter="1"/>
+                    </Picker.Behaviors>
+                </Picker>
+                
+                <Entry Grid.Row="1" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent1}">
+                    <Entry.Behaviors>
+                        <xct:EventToCommandBehavior 
+                            EventName="TextChanged"
+                            Command="{Binding UpdateCommissionCommand}"
+                            CommandParameter="1"/>
+                    </Entry.Behaviors>
+                </Entry>
+                
+                <Entry Grid.Row="1" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission1}"/>
+
+
+                <Picker Grid.Row="2" Grid.Column="0" Title="Selecione um Peão" 
+                        ItemsSource="{Binding AvailablePeons}" 
+                        ItemDisplayBinding="{Binding Name}" >
+
+                    <Picker.Behaviors>
+                        <xct:EventToCommandBehavior
+                            EventName="SelectedIndexChanged"
+                            Command="{Binding UpdatePeonsCommand}"
+                            CommandParameter="2"/>
+                    </Picker.Behaviors>
+                </Picker>
+
+                <Entry Grid.Row="2" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent2}">
+                    <Entry.Behaviors>
+                        <xct:EventToCommandBehavior 
+                            EventName="TextChanged"
+                            Command="{Binding UpdateCommissionCommand}"
+                            CommandParameter="2"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Entry Grid.Row="2" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission2}"/>
+
+            </Grid>           
+            
+            
             <Button Text="Salvar" Command="{Binding SaveCommand}"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
