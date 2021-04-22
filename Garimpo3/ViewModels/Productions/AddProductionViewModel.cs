@@ -16,26 +16,75 @@ namespace Garimpo3.ViewModels.Productions
         string amount;
         public string Amount { get => amount; set => SetProperty(ref amount, value); }
 
-        IList<Peon> availablePeons;
-        public IList<Peon> AvailablePeons { get => availablePeons; set => SetProperty(ref availablePeons, value); }
+        List<Peon> availablePeons;
+        public List<Peon> AvailablePeons { get => availablePeons; set => SetProperty(ref availablePeons, value); }
 
-        IList<Peon> allPeons;
-        public IList<Peon> AllPeons { get => allPeons; set => SetProperty(ref allPeons, value); }
 
-        Peon selectedPeon;
-        public Peon SelectedPeon { get => selectedPeon; set => SetProperty(ref selectedPeon, value); }
-                
+        Peon selectedPeon1;
+        public Peon SelectedPeon1 { get => selectedPeon1; set => SetProperty(ref selectedPeon1, value); }
+
         string percent1;
         public string Percent1 { get => percent1; set => SetProperty(ref percent1, value); }
-        
+
         string commission1;
         public string Commission1 { get => commission1; set => SetProperty(ref commission1, value); }
+
+
+        Peon selectedPeon2;
+        public Peon SelectedPeon2 { get => selectedPeon2; set => SetProperty(ref selectedPeon2, value); }
 
         string percent2;
         public string Percent2 { get => percent2; set => SetProperty(ref percent2, value); }
 
         string commission2;
         public string Commission2 { get => commission2; set => SetProperty(ref commission2, value); }
+
+
+
+        Peon selectedPeon3;
+        public Peon SelectedPeon3 { get => selectedPeon3; set => SetProperty(ref selectedPeon3, value); }
+
+        string percent3;
+        public string Percent3 { get => percent3; set => SetProperty(ref percent3, value); }
+
+        string commission3;
+        public string Commission3 { get => commission3; set => SetProperty(ref commission3, value); }
+
+
+
+
+        Peon selectedPeon4;
+        public Peon SelectedPeon4 { get => selectedPeon4; set => SetProperty(ref selectedPeon4, value); }
+
+        string percent4;
+        public string Percent4 { get => percent4; set => SetProperty(ref percent4, value); }
+
+        string commission4;
+        public string Commission4 { get => commission4; set => SetProperty(ref commission4, value); }
+
+
+
+        Peon selectedPeon5;
+        public Peon SelectedPeon5 { get => selectedPeon5; set => SetProperty(ref selectedPeon5, value); }
+
+        string percent5;
+        public string Percent5 { get => percent5; set => SetProperty(ref percent5, value); }
+
+        string commission5;
+        public string Commission5 { get => commission5; set => SetProperty(ref commission5, value); }
+
+
+
+
+        Peon selectedPeon6;
+        public Peon SelectedPeon6 { get => selectedPeon6; set => SetProperty(ref selectedPeon6, value); }
+
+        string percent6;
+        public string Percent6 { get => percent6; set => SetProperty(ref percent6, value); }
+
+        string commission6;
+        public string Commission6 { get => commission6; set => SetProperty(ref commission6, value); }
+
 
         public AsyncCommand SaveCommand { get; }
         public Command UpdateCommissionCommand { get; }
@@ -47,20 +96,7 @@ namespace Garimpo3.ViewModels.Productions
             Title = "Nova Despescada";
             SaveCommand = new AsyncCommand(Save);
             UpdateCommissionCommand = new Command<string>(UpdateCommission);
-            UpdatePeonsCommand = new Command<string>(UpdatePeons);
             LoadPeons();
-        }
-
-        private void UpdatePeons(string row)
-        {
-            //TODO
-
-            // Various properties of PeonSelected
-
-            //On change selected peon, check de list of peons properties and update the list of available peons
-
-            //if (SelectedPeon != null)
-            //    AvailablePeons.Remove(SelectedPeon);
         }
 
         private void UpdateCommission(string row)
@@ -72,15 +108,18 @@ namespace Garimpo3.ViewModels.Productions
             decimal.TryParse(percent, out var percentValue);
             decimal.TryParse(Amount, out var amountValue);
 
-            var newCommission = (amountValue * (percentValue/100)).ToString("N2");
+            var newCommission = (amountValue * (percentValue / 100)).ToString("N2");
 
             this.GetType().GetProperty("Commission" + row).SetValue(this, newCommission);
         }
 
         private void LoadPeons()
         {
-            AllPeons = Task.Run(() => Services.PeonsService.GetAllAsync()).Result.ToList();
-            AvailablePeons = AllPeons;
+            AvailablePeons = new List<Peon>();
+            var voidPeon = new Peon("Ninguém");
+            AvailablePeons.Add(voidPeon);
+            var peons = Task.Run(() => Services.PeonsService.GetAllAsync()).Result.ToList();
+            AvailablePeons.AddRange(peons);
         }
 
         async Task Save()
