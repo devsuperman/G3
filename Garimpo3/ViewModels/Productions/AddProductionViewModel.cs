@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Garimpo3.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Garimpo3.Services;
 
 namespace Garimpo3.ViewModels.Productions
 {
@@ -118,7 +119,8 @@ namespace Garimpo3.ViewModels.Productions
             AvailablePeons = new List<Peon>();
             var voidPeon = new Peon("Ninguém");
             AvailablePeons.Add(voidPeon);
-            var peons = Task.Run(() => Services.PeonsService.GetAllAsync()).Result.ToList();
+            //var peons = Task.Run(() => new PeonsService().GetAllAsync()).Result.ToList();
+            var peons = new List<Peon>();
             AvailablePeons.AddRange(peons);
         }
 

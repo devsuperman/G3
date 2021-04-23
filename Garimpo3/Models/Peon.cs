@@ -1,8 +1,9 @@
-﻿using SQLite;
+﻿using MongoDB.Bson;
+using Realms;
 
 namespace Garimpo3.Models
 {
-    public class Peon
+    public class Peon : RealmObject
     {
         public Peon()
         {
@@ -13,8 +14,8 @@ namespace Garimpo3.Models
             Name = name;
         }
 
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        [PrimaryKey]
+        public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
         public string Name { get; set; }
         public bool Active { get; set; } = true;
         public decimal Saldo { get; set; } = 0;

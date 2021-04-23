@@ -1,4 +1,6 @@
-﻿using MvvmHelpers;
+﻿using Garimpo3.Models;
+using Garimpo3.Services;
+using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System.Threading.Tasks;
 
@@ -6,7 +8,7 @@ namespace Garimpo3.ViewModels.Peons
 {
     public class EditPeonViewModel : BaseViewModel
     {
-        int id;
+        string id;
         
         string name;
         public string Name { get => name; set => SetProperty(ref name, value); }
@@ -16,7 +18,7 @@ namespace Garimpo3.ViewModels.Peons
 
         public AsyncCommand SaveCommand { get; }
 
-        public EditPeonViewModel(int id)
+        public EditPeonViewModel(string id)
         {
             this.id = id;
             Title = "Editar Peão";
@@ -26,7 +28,8 @@ namespace Garimpo3.ViewModels.Peons
         void LoadPeon()
         {
             IsBusy = true;
-            var peon = Task.Run(() => Services.PeonsService.GetAsync(id)).Result;
+            var db = Realms.Realm.GetInstance();
+            var peon = db.Find<Peon>(id);
 
             Name = peon.Name;
             Active = peon.Active;
@@ -37,11 +40,15 @@ namespace Garimpo3.ViewModels.Peons
         async Task Save()
         {
             IsBusy = true;
-            var peon = await Services.PeonsService.GetAsync(id);
-            
-            peon.Update(Name, Active);
+            var db = Realms.Realm.GetInstance();
+            var peon = db.Find<Peon>(id);
+            var realm = Realms.Realm.GetInstance();
 
-            await Services.PeonsService.UpdateAsync(peon);
+            realm.Write(() =>
+            {
+                peon.Update(Name, Active);                
+            });
+
             await Xamarin.Forms.Shell.Current.GoToAsync("..");
             
             IsBusy = false;

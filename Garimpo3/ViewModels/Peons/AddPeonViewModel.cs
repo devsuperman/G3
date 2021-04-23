@@ -1,4 +1,6 @@
-﻿using MvvmHelpers;
+﻿using Garimpo3.Models;
+using Garimpo3.Services;
+using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System.Threading.Tasks;
 
@@ -19,7 +21,14 @@ namespace Garimpo3.ViewModels.Peons
 
         async Task Save()
         {
-            await Services.PeonsService.AddAsync(Name);
+            var peon = new Peon(Name);
+
+            var db = Realms.Realm.GetInstance();
+
+            db.Write(() => { 
+                db.Add(peon);
+            });
+            
             await Xamarin.Forms.Shell.Current.GoToAsync("..");
         }
     }

@@ -1,4 +1,5 @@
-﻿using Garimpo3.ViewModels.Peons;
+﻿using Garimpo3.Models;
+using Garimpo3.ViewModels.Peons;
 using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
@@ -17,6 +18,7 @@ namespace Garimpo3.Views.Peons
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            var peons = Realms.Realm.GetInstance().All<Peon>();
             BindingContext = new PeonsViewModel();                
         }
     }

@@ -41,7 +41,9 @@ namespace Garimpo3.ViewModels.Peons
             try
             {
                 Peons.Clear();
-                var items = Task.Run(() => PeonsService.GetAllAsync()).Result;
+
+                var db = Realms.Realm.GetInstance();
+                var items = db.All<Peon>();
                 
                 foreach (var item in items)
                     Peons.Add(item);

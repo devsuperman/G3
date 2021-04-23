@@ -18,8 +18,7 @@ namespace Garimpo3.Views.Peons
         {
             base.OnAppearing();
 
-            int.TryParse(id, out var result);
-            BindingContext = new EditPeonViewModel(result);
+            BindingContext = new EditPeonViewModel(id);
         }
     }
 }

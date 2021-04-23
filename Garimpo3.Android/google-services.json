@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "665815515120",
+    "project_id": "garimpo3-727cc",
+    "storage_bucket": "garimpo3-727cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665815515120:android:37d98392ca956edbac6735",
+        "android_client_info": {
+          "package_name": "com.tambaquisoftware.garimpo3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "665815515120-m008f9jf8ojg238og0c1q1r65hudierm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9U-gGuZrzGXni9PQ5vf0I0IZscGuaSz4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "665815515120-m008f9jf8ojg238og0c1q1r65hudierm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
