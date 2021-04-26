@@ -2,21 +2,23 @@
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System.Threading.Tasks;
+using Realms;
+using Garimpo3.Models;
 
 namespace Garimpo3.ViewModels.Productions
 {
     public class EditProductionViewModel : BaseViewModel
     {
-        int id;        
-        DateTime date;
-        public DateTime Date { get => date; set => SetProperty(ref date, value); }
+        string id;
+        DateTimeOffset date;
+        public DateTimeOffset Date { get => date; set => SetProperty(ref date, value); }
 
         string amount;
         public string Amount { get => amount; set => SetProperty(ref amount, value); }
         
         public AsyncCommand SaveCommand { get; }
 
-        public EditProductionViewModel(int id)
+        public EditProductionViewModel(string id)
         {
             this.id = id;
             Title = "Editar Despescada";
@@ -26,7 +28,9 @@ namespace Garimpo3.ViewModels.Productions
         void LoadProduction()
         {
             IsBusy = true;
-            var production = Task.Run(() => Services.ProductionsService.GetAsync(id)).Result;
+
+            var realm = Realm.GetInstance();
+            var production = realm.Find<Production>(id);
 
             Date = production.Date;
             Amount = production.Amount.ToString();
@@ -37,11 +41,17 @@ namespace Garimpo3.ViewModels.Productions
         async Task Save()
         {
             IsBusy = true;
-            var production = await Services.ProductionsService.GetAsync(id);
             
-            production.Update(Date, Convert.ToDecimal(Amount));
+            var realm = Realm.GetInstance();
+            var production = realm.Find<Production>(id);
 
-            await Services.ProductionsService.UpdateAsync(production);
+            realm.Write(() =>
+            {
+                production.Update(Date, Convert.ToDecimal(Amount));
+            });
+
+            realm.Dispose();
+
             await Xamarin.Forms.Shell.Current.GoToAsync("..");
             
             IsBusy = false;

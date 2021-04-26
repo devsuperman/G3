@@ -1,4 +1,5 @@
 ﻿
+using Garimpo3.ViewModels.Productions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +15,7 @@ namespace Garimpo3.Views.Productions
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = new ViewModels.Productions.ProductionsViewModel();
+            BindingContext = new ProductionsViewModel();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using MvvmHelpers.Commands;
 using Garimpo3.Views.Productions;
+using Realms;
 
 namespace Garimpo3.ViewModels.Productions
 {
@@ -41,7 +42,9 @@ namespace Garimpo3.ViewModels.Productions
             try
             {
                 Productions.Clear();
-                var items = Task.Run(() => ProductionsService.GetAllAsync()).Result;
+                var realm = Realm.GetInstance();
+
+                var items = realm.All<Production>();
                 
                 foreach (var item in items)
                     Productions.Add(item);

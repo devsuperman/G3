@@ -6,6 +6,7 @@ using Garimpo3.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Garimpo3.Services;
+using Realms;
 
 namespace Garimpo3.ViewModels.Productions
 {
@@ -89,7 +90,6 @@ namespace Garimpo3.ViewModels.Productions
 
         public AsyncCommand SaveCommand { get; }
         public Command UpdateCommissionCommand { get; }
-        public Command UpdatePeonsCommand { get; }
 
         public AddProductionViewModel()
         {
@@ -98,7 +98,7 @@ namespace Garimpo3.ViewModels.Productions
             SaveCommand = new AsyncCommand(Save);
             UpdateCommissionCommand = new Command<string>(UpdateCommission);
             LoadPeons();
-        }
+        }        
 
         private void UpdateCommission(string row)
         {
@@ -114,19 +114,53 @@ namespace Garimpo3.ViewModels.Productions
             this.GetType().GetProperty("Commission" + row).SetValue(this, newCommission);
         }
 
+        private List<Commission> GetCommission()
+        {
+            var numbersOfRows = 6;
+            var commissions = new List<Commission>();
+
+            for (int i = 1; i <= numbersOfRows; i++)
+            {
+                var peon = (Peon)this.GetType().GetProperty("SelectedPeon" + i).GetValue(this, null);
+                var commission = this.GetType().GetProperty("Commission" + i).GetValue(this, null)?.ToString();
+
+                var validCommission = peon != null && !string.IsNullOrEmpty(peon.DredgeId) && !string.IsNullOrEmpty(commission);
+
+                if (validCommission)
+                    commissions.Add(new Commission(peon, decimal.Parse(commission)));
+            }
+
+            return commissions;
+        }
+
         private void LoadPeons()
         {
             AvailablePeons = new List<Peon>();
-            var voidPeon = new Peon("Ninguém");
+
+            var voidPeon = new Peon("Ninguém", "");
             AvailablePeons.Add(voidPeon);
-            //var peons = Task.Run(() => new PeonsService().GetAllAsync()).Result.ToList();
-            var peons = new List<Peon>();
+
+            var realm = Realm.GetInstance();
+            var peons = realm.All<Peon>().Where(w => w.Active).OrderBy(a => a.Name);
+
             AvailablePeons.AddRange(peons);
         }
 
         async Task Save()
         {
-            await Services.ProductionsService.AddAsync(Date, Convert.ToDecimal(Amount));
+            var realm = Realm.GetInstance();
+            var commissions = GetCommission();
+            
+            var production = new Production(Date, Convert.ToDecimal(Amount));
+
+            foreach (var c in commissions)
+                production.Commissions.Add(c);
+
+            realm.Write(() =>
+            {
+                realm.Add(production);
+            });
+
             await Xamarin.Forms.Shell.Current.GoToAsync("..");
         }
     }

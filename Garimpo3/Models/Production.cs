@@ -1,30 +1,33 @@
-﻿using SQLite;
-using System;
+﻿using System;
+using Realms;
+using MongoDB.Bson;
+using System.Collections.Generic;
 
 namespace Garimpo3.Models
 {
-    public class Production
+    public class Production : RealmObject
     {
         public Production()
         {
 
         }
-        public Production(DateTime date, decimal amount)
+        public Production(DateTimeOffset date, decimal amount)
         {
             Date = date;
             Amount = amount;
         }
 
-        [PrimaryKey,AutoIncrement]
-        public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string DateText => this.Date.ToShortDateString();
+        [PrimaryKey, MapTo("_id")]
+        public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
+        public DateTimeOffset Date { get; set; }
+        public string DateText => this.Date.ToLocalTime().DateTime.ToShortDateString();
         public decimal Amount { get; set; }
+        public IList<Commission> Commissions { get; }
 
-        internal void Update(DateTime date, decimal amount)
+        internal void Update(DateTimeOffset date, decimal amount)
         {
             this.Date = date;
             this.Amount = amount;
-        }
+        }        
     }
 }

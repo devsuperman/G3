@@ -16,9 +16,12 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddPeonCommand}"></ToolbarItem>
+        <!--<ToolbarItem Text="Sync" Command="{Binding SyncCommand}"></ToolbarItem>-->
     </ContentPage.ToolbarItems>
 
     <StackLayout Padding="20">
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="True" Color="Red" HorizontalOptions="Center" VerticalOptions="Center"/>
 
         <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding Peons}">
 

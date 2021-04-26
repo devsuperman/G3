@@ -17,9 +17,7 @@ namespace Garimpo3.Views.Productions
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            int.TryParse(id, out var result);
-            BindingContext = new EditProductionViewModel(result);
+            BindingContext = new EditProductionViewModel(id);
         }
     }
 }

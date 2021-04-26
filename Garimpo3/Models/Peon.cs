@@ -9,16 +9,18 @@ namespace Garimpo3.Models
         {
 
         }
-        public Peon(string name)
+        public Peon(string name, string dredgId)
         {
             Name = name;
+            DredgeId = dredgId;
         }
 
-        [PrimaryKey]
+        [PrimaryKey, MapTo("_id")]
         public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
         public string Name { get; set; }
         public bool Active { get; set; } = true;
-        public decimal Saldo { get; set; } = 0;
+        public decimal Balance { get; set; } = 0;
+        public string DredgeId { get; set; }
 
         internal void Update(string name, bool active)
         {

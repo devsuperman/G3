@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using Garimpo3.Models;
+using MongoDB.Bson;
+using Realms;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Garimpo3.Views.Productions
@@ -13,13 +16,13 @@ namespace Garimpo3.Views.Productions
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            int.TryParse(id, out var result);
-
-            BindingContext = await Services.ProductionsService.GetAsync(result);
+            var realm = Realm.GetInstance();
+            var production = realm.Find<Production>(new ObjectId(id));
+            BindingContext = production;
         }
 
         private async void Button_Clicked(object sender, System.EventArgs e)

@@ -10,190 +10,164 @@
     <ContentPage.BindingContext>
         <viewmodels:AddProductionViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
-        <StackLayout Padding="20">
+        <ScrollView>
 
-            <Label Text="Despescada" FontSize="Large"/>
-            
-            <Label Text="Data"/>
-            <DatePicker Date="{Binding Date}"/>
-            
-            <Label Text="Quantidade(g)"/>
-            <Entry Text="{Binding Amount}" Keyboard="Numeric"/>
+            <StackLayout Padding="20">
 
-            <Label Text="Comissões" FontSize="Large" Margin="0,20,0,10"/>            
+                <Label Text="Despescada" FontSize="Large"/>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
+                <Label Text="Data"/>
+                <DatePicker Date="{Binding Date}"/>
 
-                <Label Text="Peão"/>
-                <Label Text="%" Grid.Column="1"/>
-                <Label Text="Comissão" Grid.Column="2"/>
+                <Label Text="Quantidade(g)"/>
+                <Entry Text="{Binding Amount}" Keyboard="Numeric"/>
 
-                <Picker Grid.Row="1" Grid.Column="0" Title="Selecione" 
+                <Label Text="Comissões" FontSize="Large" Margin="0,20,0,10"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Peão"/>
+                    <Label Text="%" Grid.Column="1"/>
+                    <Label Text="Comissão" Grid.Column="2"/>
+
+                    <Picker Grid.Row="1" Grid.Column="0" Title="Selecione" 
                         ItemsSource="{Binding AvailablePeons}" 
-                        ItemDisplayBinding="{Binding Name}">
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedPeon1}"/>
 
-                    <Picker.Behaviors>
-                        <xct:EventToCommandBehavior
-                            EventName="SelectedIndexChanged"
-                            Command="{Binding UpdatePeonsCommand}"
-                            CommandParameter="1"/>
-                    </Picker.Behaviors>
-                </Picker>
-                
-                <Entry Grid.Row="1" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent1}">
-                    <Entry.Behaviors>
-                        <xct:EventToCommandBehavior 
-                            EventName="TextChanged"
-                            Command="{Binding UpdateCommissionCommand}"
-                            CommandParameter="1"/>
-                    </Entry.Behaviors>
-                </Entry>
-                
-                <Entry Grid.Row="1" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission1}"/>
+                    <Entry Grid.Row="1" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent1}">
+                        <Entry.Behaviors>
 
+                            <xct:EventToCommandBehavior                             
+                                EventName="TextChanged"
+                                Command="{Binding UpdateCommissionCommand}"
+                                CommandParameter="1"/>
 
-                <Picker Grid.Row="2" Grid.Column="0" Title="Selecione" 
+                            <xct:NumericValidationBehavior
+                                MinimumValue="1"
+                                MaximumValue="100"/>
+                            
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Entry Grid.Row="1" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission1}"/>
+
+                    <Picker Grid.Row="2" Grid.Column="0" Title="Selecione" 
                         ItemsSource="{Binding AvailablePeons}" 
-                        ItemDisplayBinding="{Binding Name}" >
+                        ItemDisplayBinding="{Binding Name}" 
+                        SelectedItem="{Binding SelectedPeon2}"/>
 
-                    <Picker.Behaviors>
-                        <xct:EventToCommandBehavior
-                            EventName="SelectedIndexChanged"
-                            Command="{Binding UpdatePeonsCommand}"
-                            CommandParameter="2"/>
-                    </Picker.Behaviors>
-                </Picker>
 
-                <Entry Grid.Row="2" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent2}">
-                    <Entry.Behaviors>
-                        <xct:EventToCommandBehavior 
+                    <Entry Grid.Row="2" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent2}">
+                        <Entry.Behaviors>
+                            <xct:EventToCommandBehavior 
                             EventName="TextChanged"
                             Command="{Binding UpdateCommissionCommand}"
                             CommandParameter="2"/>
-                    </Entry.Behaviors>
-                </Entry>
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Entry Grid.Row="2" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission2}"/>
+                    <Entry Grid.Row="2" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission2}"/>
 
 
 
-                <Picker Grid.Row="3" Grid.Column="0" Title="Selecione" 
+                    <Picker Grid.Row="3" Grid.Column="0" Title="Selecione" 
                         ItemsSource="{Binding AvailablePeons}" 
-                        ItemDisplayBinding="{Binding Name}" >
+                        ItemDisplayBinding="{Binding Name}" 
+                        SelectedItem="{Binding SelectedPeon3}"/>
 
-                    <Picker.Behaviors>
-                        <xct:EventToCommandBehavior
-                            EventName="SelectedIndexChanged"
-                            Command="{Binding UpdatePeonsCommand}"
-                            CommandParameter="3"/>
-                    </Picker.Behaviors>
-                </Picker>
 
-                <Entry Grid.Row="3" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent3}">
-                    <Entry.Behaviors>
-                        <xct:EventToCommandBehavior 
+                    <Entry Grid.Row="3" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent3}">
+                        <Entry.Behaviors>
+                            <xct:EventToCommandBehavior 
                             EventName="TextChanged"
                             Command="{Binding UpdateCommissionCommand}"
                             CommandParameter="3"/>
-                    </Entry.Behaviors>
-                </Entry>
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Entry Grid.Row="3" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission3}"/>
-
-
+                    <Entry Grid.Row="3" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission3}"/>
 
 
-                <Picker Grid.Row="4" Grid.Column="0" Title="Selecione" 
+
+
+                    <Picker Grid.Row="4" Grid.Column="0" Title="Selecione" 
                         ItemsSource="{Binding AvailablePeons}" 
-                        ItemDisplayBinding="{Binding Name}" >
+                        ItemDisplayBinding="{Binding Name}" 
+                        SelectedItem="{Binding SelectedPeon4}"/>
 
-                    <Picker.Behaviors>
-                        <xct:EventToCommandBehavior
-                            EventName="SelectedIndexChanged"
-                            Command="{Binding UpdatePeonsCommand}"
-                            CommandParameter="4"/>
-                    </Picker.Behaviors>
-                </Picker>
-
-                <Entry Grid.Row="4" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent4}">
-                    <Entry.Behaviors>
-                        <xct:EventToCommandBehavior 
+                    <Entry Grid.Row="4" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent4}">
+                        <Entry.Behaviors>
+                            <xct:EventToCommandBehavior 
                             EventName="TextChanged"
                             Command="{Binding UpdateCommissionCommand}"
                             CommandParameter="4"/>
-                    </Entry.Behaviors>
-                </Entry>
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Entry Grid.Row="4" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission4}"/>
-
-
+                    <Entry Grid.Row="4" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission4}"/>
 
 
-                <Picker Grid.Row="5" Grid.Column="0" Title="Selecione" 
+
+
+                    <Picker Grid.Row="5" Grid.Column="0" Title="Selecione" 
                         ItemsSource="{Binding AvailablePeons}" 
-                        ItemDisplayBinding="{Binding Name}" >
-                    
-                    <Picker.Behaviors>
-                        <xct:EventToCommandBehavior
-                            EventName="SelectedIndexChanged"
-                            Command="{Binding UpdatePeonsCommand}"
-                            CommandParameter="5"/>
-                    </Picker.Behaviors>
-                </Picker>
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedPeon5}"/>
 
-                <Entry Grid.Row="5" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent5}">
-                    <Entry.Behaviors>
-                        <xct:EventToCommandBehavior 
+
+                    <Entry Grid.Row="5" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent5}">
+                        <Entry.Behaviors>
+                            <xct:EventToCommandBehavior 
                             EventName="TextChanged"
                             Command="{Binding UpdateCommissionCommand}"
                             CommandParameter="5"/>
-                    </Entry.Behaviors>
-                </Entry>
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Entry Grid.Row="5" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission5}"/>
-
-
+                    <Entry Grid.Row="5" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission5}"/>
 
 
-                <Picker Grid.Row="6" Grid.Column="0" Title="Selecione" 
+
+
+                    <Picker Grid.Row="6" Grid.Column="0" Title="Selecione" 
                         ItemsSource="{Binding AvailablePeons}" 
-                        ItemDisplayBinding="{Binding Name}" >
+                        ItemDisplayBinding="{Binding Name}" 
+                        SelectedItem="{Binding SelectedPeon6}"/>
 
-                    <Picker.Behaviors>
-                        <xct:EventToCommandBehavior
-                            EventName="SelectedIndexChanged"
-                            Command="{Binding UpdatePeonsCommand}"
-                            CommandParameter="6"/>
-                    </Picker.Behaviors>
-                </Picker>
 
-                <Entry Grid.Row="6" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent6}">
-                    <Entry.Behaviors>
-                        <xct:EventToCommandBehavior 
+
+                    <Entry Grid.Row="6" Grid.Column="1" Keyboard="Numeric" Text="{Binding Percent6}">
+                        <Entry.Behaviors>
+                            <xct:EventToCommandBehavior 
                             EventName="TextChanged"
                             Command="{Binding UpdateCommissionCommand}"
                             CommandParameter="6"/>
-                    </Entry.Behaviors>
-                </Entry>
+                        </Entry.Behaviors>
+                    </Entry>
 
-                <Entry Grid.Row="6" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission6}"/>
+                    <Entry Grid.Row="6" Grid.Column="2" Keyboard="Numeric" Text="{Binding Commission6}"/>
 
 
-            </Grid>           
-            
-            
-            <Button Text="Salvar" Command="{Binding SaveCommand}"/>
-            
-        </StackLayout>
+                </Grid>
+
+
+                <Button Text="Salvar" Command="{Binding SaveCommand}"/>
+
+            </StackLayout>
+        </ScrollView>
+
     </ContentPage.Content>
+
+
 </ContentPage>

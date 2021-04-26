@@ -14,6 +14,15 @@
             <Label Text="Quantidade"/>
             <Label Text="{Binding Amount}"/>
 
+            <ListView
+                ItemsSource="{Binding Commissions}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Commission">
+                        <TextCell Text="{Binding Value}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
             <Button Text="Editar" Clicked="Button_Clicked"/>
 
         </StackLayout>

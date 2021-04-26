@@ -1,5 +1,6 @@
 ﻿using Garimpo3.Models;
 using Garimpo3.Services;
+using MongoDB.Bson;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System.Threading.Tasks;
@@ -28,8 +29,8 @@ namespace Garimpo3.ViewModels.Peons
         void LoadPeon()
         {
             IsBusy = true;
-            var db = Realms.Realm.GetInstance();
-            var peon = db.Find<Peon>(id);
+            using var realm = Realms.Realm.GetInstance();
+            var peon = realm.Find<Peon>(new ObjectId(id));
 
             Name = peon.Name;
             Active = peon.Active;
@@ -40,9 +41,9 @@ namespace Garimpo3.ViewModels.Peons
         async Task Save()
         {
             IsBusy = true;
-            var db = Realms.Realm.GetInstance();
-            var peon = db.Find<Peon>(id);
-            var realm = Realms.Realm.GetInstance();
+
+            using var realm = Realms.Realm.GetInstance();
+            var peon = realm.Find<Peon>(new ObjectId(id));
 
             realm.Write(() =>
             {

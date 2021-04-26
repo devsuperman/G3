@@ -1,4 +1,5 @@
 ﻿using Garimpo3.Models;
+using MongoDB.Bson;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,8 +18,11 @@ namespace Garimpo3.Views.Peons
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            var db = Realms.Realm.GetInstance();
-            BindingContext = db.Find<Peon>(id);
+            
+            using var realm = Realms.Realm.GetInstance();
+            var peon = realm.Find<Peon>(new ObjectId(id));
+
+            BindingContext = new Peon(peon.Name, peon.DredgeId);
         }        
 
         private async void Button_Clicked(object sender, System.EventArgs e)
