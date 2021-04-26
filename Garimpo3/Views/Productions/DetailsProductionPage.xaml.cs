@@ -18,6 +18,6 @@ namespace Garimpo3.Views.Productions
         {
             base.OnAppearing();
             BindingContext = new DetailsProductionViewModel(id);
-        }        
+        }
     }
 }

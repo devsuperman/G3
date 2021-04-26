@@ -27,7 +27,7 @@
                 </ListView.ItemTemplate>
                 
             </ListView>
-            <Button Text="Apagar" BackgroundColor="Red" TextColor="White"/>
+            <Button Text="Apagar" BackgroundColor="Red" TextColor="White" Command="{Binding DeleteCommand}"/>
 
         </StackLayout>
     </ContentPage.Content>

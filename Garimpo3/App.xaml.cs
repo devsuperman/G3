@@ -6,6 +6,7 @@ namespace Garimpo3
     {
         public App()
         {
+            DependencyService.Register<Services.IPopUp, Services.DisplayAlertService>();
             InitializeComponent();
             MainPage = new AppShell();
         }
