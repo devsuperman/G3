@@ -11,9 +11,13 @@
             <Label Text="Nome"/>
             <Label Text="{Binding Name}"/>
 
+            <Label Text="Saldo"/>
+            <Label Text="{Binding Balance}"/>
+
             <Label Text="Ativo"/>
-            <Switch IsToggled="{Binding Active}" IsEnabled="False" HorizontalOptions="Start"></Switch>
-            
+            <Switch IsToggled="{Binding Active}" IsEnabled="False" HorizontalOptions="Start"
+                    OnColor="CadetBlue"/>
+
             <Button Text="Editar" Clicked="Button_Clicked"/>
             
         </StackLayout>

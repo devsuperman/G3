@@ -156,9 +156,18 @@ namespace Garimpo3.ViewModels.Productions
             foreach (var c in commissions)
                 production.Commissions.Add(c);
 
+            var peonsIds = commissions.Select(s => s.PeonId).ToList();
+            var peons = realm.All<Peon>().ToList().Where(w => peonsIds.Contains(w.Id)).ToList();
+
             realm.Write(() =>
             {
                 realm.Add(production);
+
+                foreach (var c in commissions)
+                {
+                    var peon = peons.FirstOrDefault(f => f.Id == c.PeonId);
+                    peon.AddCommission(c.Value);
+                }
             });
 
             await Xamarin.Forms.Shell.Current.GoToAsync("..");

@@ -17,7 +17,9 @@
             <Label Text="Comissões" FontSize="Large" Margin="0,20,0,0"/>
 
             <ListView
-                ItemsSource="{Binding Commissions}">
+                ItemsSource="{Binding Commissions}"
+                CachingStrategy="RecycleElement"
+                SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewmodels:CommissionDTO">
                         <TextCell Text="{Binding Description}"/>
@@ -25,7 +27,7 @@
                 </ListView.ItemTemplate>
                 
             </ListView>
-            <Button Text="Apagar" BackgroundColor="Red"/>
+            <Button Text="Apagar" BackgroundColor="Red" TextColor="White"/>
 
         </StackLayout>
     </ContentPage.Content>

@@ -15,7 +15,6 @@ namespace Garimpo3
 
             Routing.RegisterRoute(nameof(NewProductionPage), typeof(NewProductionPage));
             Routing.RegisterRoute(nameof(DetailsProductionPage), typeof(DetailsProductionPage));
-            Routing.RegisterRoute(nameof(EditProductionPage), typeof(EditProductionPage));
         }
 
     }

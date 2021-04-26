@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using Realms;
+using System;
 
 namespace Garimpo3.Models
 {
@@ -27,5 +28,7 @@ namespace Garimpo3.Models
             this.Name = name;
             this.Active = active;
         }
+
+        internal void AddCommission(decimal value) => Balance += value;
     }
 }
