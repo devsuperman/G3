@@ -2,28 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Garimpo3.Views.Productions.DetailsProductionPage"
-             xmlns:models="clr-namespace:Garimpo3.Models"
-             x:DataType="models:Production"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Productions"
+             x:DataType="viewmodels:DetailsProductionViewModel"
              Title="Despescada">
     <ContentPage.Content>
         <StackLayout Padding="20">
             
             <Label Text="Data"/>
-            <Label Text="{Binding DateText}"/>
+            <Label Text="{Binding Date}"/>
 
             <Label Text="Quantidade"/>
             <Label Text="{Binding Amount}"/>
 
+            <Label Text="Comissões" FontSize="Large" Margin="0,20,0,0"/>
+
             <ListView
                 ItemsSource="{Binding Commissions}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Commission">
-                        <TextCell Text="{Binding Value}"/>
+                    <DataTemplate x:DataType="viewmodels:CommissionDTO">
+                        <TextCell Text="{Binding Description}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 
             </ListView>
-            <Button Text="Editar" Clicked="Button_Clicked"/>
+            <Button Text="Apagar" BackgroundColor="Red"/>
 
         </StackLayout>
     </ContentPage.Content>
