@@ -23,5 +23,10 @@ namespace Garimpo3.ViewModels.Peons
             this.Active = peon.Active;
             this.Commissions = peon.Commissions;
         }
+        public class CommissionDTO
+        {
+            public string Date { get; set; }
+            public decimal Value { get; set; }
+        }
     }
 }

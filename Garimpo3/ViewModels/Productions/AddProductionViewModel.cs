@@ -128,7 +128,7 @@ namespace Garimpo3.ViewModels.Productions
                 var validCommission = peon != null && !string.IsNullOrEmpty(peon.DredgeId) && !string.IsNullOrEmpty(commission);
 
                 if (validCommission)
-                    commissions.Add(new Commission(peon, decimal.Parse(commission)));
+                    commissions.Add(new Commission(peon, decimal.Parse(commission), Date));
             }
 
             return commissions;
