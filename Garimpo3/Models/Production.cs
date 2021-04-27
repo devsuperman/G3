@@ -28,6 +28,12 @@ namespace Garimpo3.Models
         {
             this.Date = date;
             this.Amount = amount;
-        }        
+        }
+
+        internal void AddCommission(Commission c)
+        {
+            c.Peon.Balance += c.Value;
+            this.Commissions.Add(c);
+        }
     }
 }

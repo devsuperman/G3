@@ -34,8 +34,7 @@ namespace Garimpo3.ViewModels.Productions
 
             foreach (var c in production.Commissions)
             {
-                var peon = realm.All<Peon>().FirstOrDefault(a => a.Id == c.PeonId);
-                var dtoCommission = new CommissionDTO(peon?.Name, c.Value);
+                var dtoCommission = new CommissionDTO(c.Peon.Name, c.Value);
                 Commissions.Add(dtoCommission);
             }
 
@@ -51,8 +50,13 @@ namespace Garimpo3.ViewModels.Productions
 
             var production = realm.Find<Production>(new ObjectId(productionId));
 
-            realm.Write(() => realm.Remove(production));
+            realm.Write(() =>
+            {
+                foreach (var c in production.Commissions)
+                    c.Peon.Balance -= c.Value;
 
+                realm.Remove(production);
+            });
             await Shell.Current.GoToAsync("..");
 
             IsBusy = false;

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Garimpo3.Services;
 using Realms;
+using MongoDB.Bson;
 
 namespace Garimpo3.ViewModels.Productions
 {
@@ -153,21 +154,12 @@ namespace Garimpo3.ViewModels.Productions
             
             var production = new Production(Date, Convert.ToDecimal(Amount));
 
-            foreach (var c in commissions)
-                production.Commissions.Add(c);
-
-            var peonsIds = commissions.Select(s => s.PeonId).ToList();
-            var peons = realm.All<Peon>().ToList().Where(w => peonsIds.Contains(w.Id)).ToList();
-
             realm.Write(() =>
             {
-                realm.Add(production);
+                realm.Add(production);                
 
                 foreach (var c in commissions)
-                {
-                    var peon = peons.FirstOrDefault(f => f.Id == c.PeonId);
-                    peon.AddCommission(c.Value);
-                }
+                    production.AddCommission(c);
             });
 
             await Xamarin.Forms.Shell.Current.GoToAsync("..");

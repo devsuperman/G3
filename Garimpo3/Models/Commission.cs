@@ -3,7 +3,7 @@ using Realms;
 
 namespace Garimpo3.Models
 {
-    public class Commission : EmbeddedObject
+    public class Commission : RealmObject
     {
         public Commission()
         {
@@ -11,11 +11,14 @@ namespace Garimpo3.Models
         }
         public Commission(Peon peon, decimal commission)
         {
-            this.PeonId = peon.Id;
+            this.Peon = peon;
             this.Value = commission;
         }
 
-        public ObjectId PeonId { get; set; }
+        [MapTo("_id"), PrimaryKey]
+        public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
+        public Peon Peon { get; set; }
+        public Production Production { get; set; }
         public decimal Value { get; set; }
     }
 }
