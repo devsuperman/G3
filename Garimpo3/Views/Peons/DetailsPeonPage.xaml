@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Garimpo3.Views.Peons.DetailsPeonPage"
              xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"             
+             xmlns:models="clr-namespace:Garimpo3.Models"
              x:DataType="viewmodels:DetailsPeonViewModel"
              Title="Peão">
     <ContentPage.Content>        
@@ -17,6 +18,15 @@
             <Label Text="Ativo"/>
             <Switch IsToggled="{Binding Active}" IsEnabled="False" HorizontalOptions="Start"
                     OnColor="CadetBlue"/>
+
+            <Label Text="Commissões" FontSize="Large"/>
+            <ListView ItemsSource="{Binding Commissions}" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Commission">
+                        <TextCell Text="{Binding Value}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Button Text="Editar" Clicked="Button_Clicked"/>
             

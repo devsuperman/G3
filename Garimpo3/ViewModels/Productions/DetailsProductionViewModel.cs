@@ -53,7 +53,10 @@ namespace Garimpo3.ViewModels.Productions
             realm.Write(() =>
             {
                 foreach (var c in production.Commissions)
+                {
                     c.Peon.Balance -= c.Value;
+                    realm.Remove(c);
+                }
 
                 realm.Remove(production);
             });
