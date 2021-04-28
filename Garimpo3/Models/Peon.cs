@@ -23,8 +23,6 @@ namespace Garimpo3.Models
         public bool Active { get; set; } = true;
         public decimal Balance { get; set; }
         
-        [Backlink(nameof(Commission.Peon))]
-        public IQueryable<Commission> Commissions { get; }
         public IList<Payment> Payments { get; }
         public string DredgeId { get; set; }
 

@@ -29,7 +29,7 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Count" Icon="icon_about.png" Route="Count" ContentTemplate="{DataTemplate local:CountPage}" />
+        <ShellContent Title="Test" Icon="icon_about.png" Route="TestPage" ContentTemplate="{DataTemplate local:TestPage}" />
         <ShellContent Title="Despescadas" Icon="icon_about.png" Route="ProductionsPage" ContentTemplate="{DataTemplate productions:ProductionsPage}" />
         <ShellContent Title="Peões" Icon="icon_about.png" Route="PeonsPage" ContentTemplate="{DataTemplate peons:PeonsPage}" />
     </TabBar>

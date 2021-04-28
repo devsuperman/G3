@@ -1,46 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Garimpo3.Views.Peons.DetailsPeonPage"
-             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"             
-             xmlns:models="clr-namespace:Garimpo3.Models"
-             x:DataType="viewmodels:DetailsPeonViewModel"
-             Title="Peão">
-    <ContentPage.Content>        
-        <StackLayout Padding="20">
-            
-            <Label Text="Nome"/>
-            <Label Text="{Binding Name}"/>
+            xmlns:pages="clr-namespace:Garimpo3.Views.Peons">
 
-            <Label Text="Saldo"/>
-            <Label Text="{Binding Balance}"/>
-
-            <Label Text="Ativo"/>
-            <Switch IsToggled="{Binding Active}" IsEnabled="False" HorizontalOptions="Start"
-                    OnColor="CadetBlue"/>
-
-            <Label Text="Commissões" FontSize="Large"/>
-            <ListView 
-                ItemsSource="{Binding Commissions}" 
-                CachingStrategy="RecycleElement"
-                SelectionMode="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Commission">
-                        
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding DateText}"/>
-                                <Label Text="-"/>
-                                <Label Text="{Binding Value}"/>
-                            </StackLayout>
-                        </ViewCell>
-                        
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <Button Text="Editar" Clicked="Button_Clicked"/>
-            
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    <pages:ResumePage Title="Resumo" x:Name="resumePage"/>
+    <pages:CommissionsPage Title="Comissões" x:Name="commissionPage"/>
+    <pages:PaymentsPage Title="Pagamentos" x:Name="paymentsPage"/>
+    
+</TabbedPage>

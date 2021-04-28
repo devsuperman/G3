@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Garimpo3.Views.Peons.CommissionsPage"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"
+             xmlns:models="clr-namespace:Garimpo3.Models"
+             x:DataType="viewmodels:CommissionsViewModel">
+
+
+    <StackLayout Padding="20">
+        
+        <ListView ItemsSource="{Binding Commissions}" CachingStrategy="RecycleElement" SelectionMode="None">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Commission">
+                    <ViewCell>
+                    
+                        <StackLayout Orientation="Horizontal">
+                        
+                            <Label Text="{Binding DateText}" />
+                            <Label Text="-" />
+                            <Label Text="{Binding Value}"/>
+                        
+                        </StackLayout>
+                    
+                    </ViewCell>
+                
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        
+        </ListView>
+        
+    </StackLayout>
+</ContentPage>

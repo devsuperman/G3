@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Garimpo3.Views.Peons.ResumePage"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"             
+             x:DataType="viewmodels:ResumeViewModel"
+             Title="Peão">
+    <ContentPage.Content>        
+        <StackLayout Padding="20">
+            
+            <Label Text="Nome"/>
+            <Label Text="{Binding Name}"/>
+
+            <Label Text="Saldo"/>
+            <Label Text="{Binding Balance}"/>
+
+            <Label Text="Ativo"/>
+            <Switch IsToggled="{Binding Active}" IsEnabled="False" HorizontalOptions="Start"
+                    OnColor="CadetBlue"/>
+
+            <Button Text="Editar" Command="{Binding EditCommand}"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

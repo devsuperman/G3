@@ -13,6 +13,7 @@ namespace Garimpo3.Models
         public Commission(Peon peon, decimal commission, DateTime date)
         {
             this.Peon = peon;
+            this.PeonId = peon.Id;
             this.Date = date;
             this.Value = commission;
         }
@@ -20,6 +21,7 @@ namespace Garimpo3.Models
         [MapTo("_id"), PrimaryKey]
         public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
         public Peon Peon { get; set; }
+        public ObjectId PeonId { get; set; }
         public DateTimeOffset Date { get; set; }
         public string DateText => this.Date.ToLocalTime().DateTime.ToShortDateString();
         public decimal Value { get; set; }
