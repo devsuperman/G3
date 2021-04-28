@@ -20,6 +20,7 @@ namespace Garimpo3.Views.Peons
             base.OnAppearing();
             resumePage.BindingContext = new ResumeViewModel(id);
             commissionPage.BindingContext = new CommissionsViewModel(id);
+            paymentsPage.BindingContext = new PaymentsViewModel(id);
         }
     }
 }

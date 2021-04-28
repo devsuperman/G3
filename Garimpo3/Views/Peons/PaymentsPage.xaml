@@ -1,32 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Garimpo3.Views.Peons.PaymentsPage">
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+             x:Class="Garimpo3.Views.Peons.PaymentsPage"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"
+             xmlns:models="clr-namespace:Garimpo3.Models"
+             x:DataType="viewmodels:PaymentsViewModel">
+    <StackLayout Padding="20">
+
+        <ListView ItemsSource="{Binding Payments}" SelectionMode="None" CachingStrategy="RecycleElement">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Payment">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding DateText}" />
+                            <Label Text="-" />
+                            <Label Text="{Binding Value}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
+    </StackLayout>
+
 </ContentPage>

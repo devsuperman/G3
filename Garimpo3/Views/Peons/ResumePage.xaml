@@ -6,6 +6,7 @@
              x:DataType="viewmodels:ResumeViewModel"
              Title="Peão">
     <ContentPage.Content>        
+        
         <StackLayout Padding="20">
             
             <Label Text="Nome"/>
@@ -18,8 +19,11 @@
             <Switch IsToggled="{Binding Active}" IsEnabled="False" HorizontalOptions="Start"
                     OnColor="CadetBlue"/>
 
-            <Button Text="Editar" Command="{Binding EditCommand}"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Fazer Pagamento" />
+                <Button Text="Editar" Command="{Binding EditCommand}"/>
+            </StackLayout>
             
-        </StackLayout>
+        </StackLayout>        
     </ContentPage.Content>
 </ContentPage>

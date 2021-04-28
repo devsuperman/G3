@@ -8,5 +8,6 @@ namespace Garimpo3.Models
         public DateTimeOffset Date { get; set; }
         public decimal Value { get; set; }
         public Peon Peon { get; set; }
+        public string DateText => this.Date.ToLocalTime().DateTime.ToShortDateString();
     }
 }
