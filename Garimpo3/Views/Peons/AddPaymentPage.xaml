@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Garimpo3.Views.Peons.AddPaymentPage"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"
+             x:DataType="viewmodels:AddPaymentViewModel"
+             Title="{Binding Title}">
+        
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            
+            <Label Text="Data"/>
+            <DatePicker Date="{Binding Date}"/>
+
+            <Label Text="Valor (g)"/>
+            <Entry Text="{Binding Vaalue}" Keyboard="Numeric"/>
+
+            <Button Text="Salvar" Command="{Binding SaveCommand}" IsEnabled="{Binding IsNotBusy}"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

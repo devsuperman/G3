@@ -16,7 +16,6 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddPeonCommand}"></ToolbarItem>
-        <!--<ToolbarItem Text="Sync" Command="{Binding SyncCommand}"></ToolbarItem>-->
     </ContentPage.ToolbarItems>
 
     <StackLayout Padding="20">

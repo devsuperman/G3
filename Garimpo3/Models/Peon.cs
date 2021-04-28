@@ -2,6 +2,7 @@
 using MongoDB.Bson;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Garimpo3.Models
 {
@@ -30,6 +31,12 @@ namespace Garimpo3.Models
         {
             this.Name = name;
             this.Active = active;
+        }
+
+        internal void AddPayment(DateTime date, decimal vaalue)
+        {
+            Balance -= vaalue;
+            Payments.Add(new Payment(date, vaalue));
         }
     }
 }

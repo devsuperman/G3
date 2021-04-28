@@ -6,7 +6,7 @@
              xmlns:models="clr-namespace:Garimpo3.Models"
              x:DataType="viewmodels:PaymentsViewModel">
     <StackLayout Padding="20">
-
+        
         <ListView ItemsSource="{Binding Payments}" SelectionMode="None" CachingStrategy="RecycleElement">
 
             <ListView.ItemTemplate>
@@ -19,9 +19,12 @@
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
-            </ListView.ItemTemplate>
+            </ListView.ItemTemplate>            
             
         </ListView>
+
+        <Button Text="ADD" Command="{Binding AddPaymentCommand}"/>
+
 
     </StackLayout>
 

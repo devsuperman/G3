@@ -19,10 +19,7 @@
             <Switch IsToggled="{Binding Active}" IsEnabled="False" HorizontalOptions="Start"
                     OnColor="CadetBlue"/>
 
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Fazer Pagamento" />
-                <Button Text="Editar" Command="{Binding EditCommand}"/>
-            </StackLayout>
+            <Button Text="Editar" Command="{Binding EditCommand}"/>
             
         </StackLayout>        
     </ContentPage.Content>
