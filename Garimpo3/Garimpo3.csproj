@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Peons\AddPaymentPage.xaml">
+    <EmbeddedResource Update="Views\Payments\AddPaymentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Peons\CommissionsPage.xaml">
@@ -44,7 +44,7 @@
     <EmbeddedResource Update="Views\Peons\NewPeonPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Peons\PaymentsPage.xaml">
+    <EmbeddedResource Update="Views\Payments\PaymentsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Peons\PeonsPage.xaml">

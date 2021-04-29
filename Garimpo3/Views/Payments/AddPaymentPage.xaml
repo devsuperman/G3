@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Garimpo3.Views.Peons.AddPaymentPage"
-             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"
+             x:Class="Garimpo3.Views.Payments.AddPaymentPage"
+             xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Payments"
              x:DataType="viewmodels:AddPaymentViewModel"
              Title="{Binding Title}">
         

@@ -1,9 +1,9 @@
-﻿using Garimpo3.ViewModels.Peons;
+﻿using Garimpo3.ViewModels.Payments;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Garimpo3.Views.Peons
+namespace Garimpo3.Views.Payments
 {
     [QueryProperty("id", "id")]
     [XamlCompilation(XamlCompilationOptions.Compile)]

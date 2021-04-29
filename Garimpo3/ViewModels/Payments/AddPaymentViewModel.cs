@@ -7,7 +7,7 @@ using MvvmHelpers.Commands;
 using Realms;
 using Xamarin.Forms;
 
-namespace Garimpo3.ViewModels.Peons
+namespace Garimpo3.ViewModels.Payments
 {
     public class AddPaymentViewModel : BaseViewModel
     {

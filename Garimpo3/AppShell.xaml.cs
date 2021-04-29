@@ -1,5 +1,6 @@
 ﻿using Garimpo3.Views.Productions;
 using Garimpo3.Views.Peons;
+using Garimpo3.Views.Payments;
 using Xamarin.Forms;
 
 namespace Garimpo3

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Garimpo3.ViewModels.Peons
+namespace Garimpo3.ViewModels.Payments
 {
     public class PaymentsViewModel : BaseViewModel
     {

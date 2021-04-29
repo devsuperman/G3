@@ -1,4 +1,5 @@
 ﻿
+using Garimpo3.ViewModels.Payments;
 using Garimpo3.ViewModels.Peons;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

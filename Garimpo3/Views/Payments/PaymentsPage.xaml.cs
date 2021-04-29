@@ -3,7 +3,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Garimpo3.Views.Peons
+namespace Garimpo3.Views.Payments
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PaymentsPage : ContentPage
