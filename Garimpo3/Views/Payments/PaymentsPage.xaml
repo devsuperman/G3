@@ -4,10 +4,29 @@
              x:Class="Garimpo3.Views.Payments.PaymentsPage"
              xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Payments"
              xmlns:models="clr-namespace:Garimpo3.Models"
-             x:DataType="viewmodels:PaymentsViewModel">
+             x:DataType="viewmodels:PaymentsViewModel"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <StackLayout Padding="20">
         
-        <ListView ItemsSource="{Binding Payments}" SelectionMode="None" CachingStrategy="RecycleElement">
+        <ListView 
+            ItemsSource="{Binding Payments}" 
+            CachingStrategy="RecycleElement"
+            SelectedItem="{Binding SelectedPayment}">
+
+            <ListView.Behaviors>
+                <xct:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding PaymentTappedCommand}"
+                    EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}">
+                </xct:EventToCommandBehavior>
+            </ListView.Behaviors>
 
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:Payment">

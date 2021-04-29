@@ -14,5 +14,9 @@ namespace Garimpo3.Services
         {
             return await App.Current.MainPage.DisplayAlert(MyAppName, question, yesText, noText);
         }
+        public async Task<string> ActionSheet(string title, string cancel, string destruction, params string[] buttons)
+        {
+            return await App.Current.MainPage.DisplayActionSheet(title, cancel, destruction, buttons);
+        }
     }
 }

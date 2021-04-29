@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Garimpo3.Views.Peons.DetailsPeonPage"
             xmlns:pages="clr-namespace:Garimpo3.Views.Peons"
+            xmlns:payments="clr-namespace:Garimpo3.Views.Payments"
             Title="Peão">
 
     <pages:ResumePage Title="Resumo" x:Name="resumePage"/>
     <pages:CommissionsPage Title="Comissões" x:Name="commissionPage"/>
-    <pages:PaymentsPage Title="Pagamentos" x:Name="paymentsPage"/>
+    <payments:PaymentsPage Title="Pagamentos" x:Name="paymentsPage"/>
     
 </TabbedPage>

@@ -38,5 +38,11 @@ namespace Garimpo3.Models
             Balance -= vaalue;
             Payments.Add(new Payment(date, vaalue));
         }
+
+        internal void RemovePayment(Payment paymentToRemove)
+        {
+            this.Balance += paymentToRemove.Value;
+            this.Payments.Remove(paymentToRemove);
+        }
     }
 }
