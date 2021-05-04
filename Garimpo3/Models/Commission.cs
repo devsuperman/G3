@@ -25,5 +25,8 @@ namespace Garimpo3.Models
         public DateTimeOffset Date { get; set; }
         public string DateText => this.Date.ToLocalTime().DateTime.ToShortDateString();
         public decimal Value { get; set; }
+
+        [Required]
+        public string DredgeId { get; set; }
     }
 }

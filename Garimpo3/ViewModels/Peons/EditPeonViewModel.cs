@@ -3,6 +3,7 @@ using Garimpo3.Services;
 using MongoDB.Bson;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
+using Realms;
 using System.Threading.Tasks;
 
 namespace Garimpo3.ViewModels.Peons
@@ -18,18 +19,20 @@ namespace Garimpo3.ViewModels.Peons
         public bool Active { get => active; set => SetProperty(ref active, value); }
 
         public AsyncCommand SaveCommand { get; }
+        Realm realm;
 
         public EditPeonViewModel(string id)
         {
             this.id = id;
             Title = "Editar Peão";
             SaveCommand = new AsyncCommand(Save);
+            realm = Realm.GetInstance(MyRealmConfig.Get());
             LoadPeon();
         }
         void LoadPeon()
         {
             IsBusy = true;
-            using var realm = Realms.Realm.GetInstance();
+            
             var peon = realm.Find<Peon>(new ObjectId(id));
 
             Name = peon.Name;
@@ -42,7 +45,7 @@ namespace Garimpo3.ViewModels.Peons
         {
             IsBusy = true;
 
-            using var realm = Realms.Realm.GetInstance();
+            
             var peon = realm.Find<Peon>(new ObjectId(id));
 
             realm.Write(() =>
@@ -50,6 +53,7 @@ namespace Garimpo3.ViewModels.Peons
                 peon.Update(Name, Active);                
             });
 
+            realm.Dispose();
             await Xamarin.Forms.Shell.Current.GoToAsync("..");
             
             IsBusy = false;

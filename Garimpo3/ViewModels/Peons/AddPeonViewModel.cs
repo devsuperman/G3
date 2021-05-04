@@ -24,8 +24,11 @@ namespace Garimpo3.ViewModels.Peons
         {
             var peon = new Peon(Name, "alcon");
 
-            using var realm = Realm.GetInstance();
+            var realm = Realm.GetInstance(MyRealmConfig.Get());
+
             realm.Write(() => realm.Add(peon));
+
+            realm.Dispose();
 
             await Xamarin.Forms.Shell.Current.GoToAsync("..");
         }

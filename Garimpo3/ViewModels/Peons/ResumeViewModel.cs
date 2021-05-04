@@ -1,4 +1,5 @@
 ﻿using Garimpo3.Models;
+using Garimpo3.Services;
 using Garimpo3.Views.Peons;
 using MongoDB.Bson;
 using MvvmHelpers;
@@ -21,12 +22,19 @@ namespace Garimpo3.ViewModels.Peons
         {
             Id = id;
             EditCommand = new AsyncCommand(Edit);
-            var realm = Realm.GetInstance();
+
+            IsBusy = true;
+
+            var config = Task.Run(() => MyRealmConfig.Get()).Result;
+            var realm = Realm.GetInstance(config);
+
             var peon = realm.Find<Peon>(new ObjectId(id));
             
             this.Name = peon.Name;
             this.Balance = peon.Balance;
             this.Active = peon.Active;
+
+            IsBusy = false;
         }
 
         private async Task Edit()

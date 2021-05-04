@@ -8,6 +8,7 @@ using System.Linq;
 using Garimpo3.Services;
 using Realms;
 using MongoDB.Bson;
+using Xamarin.Forms;
 
 namespace Garimpo3.ViewModels.Productions
 {
@@ -90,14 +91,18 @@ namespace Garimpo3.ViewModels.Productions
 
 
         public AsyncCommand SaveCommand { get; }
-        public Command UpdateCommissionCommand { get; }
+        public MvvmHelpers.Commands.Command UpdateCommissionCommand { get; }
+        private readonly IPopUp _popUp;
+        Realm realm;
 
         public AddProductionViewModel()
         {
             Date = DateTime.Today;
             Title = "Nova Despescada";
             SaveCommand = new AsyncCommand(Save);
-            UpdateCommissionCommand = new Command<string>(UpdateCommission);
+            UpdateCommissionCommand = new MvvmHelpers.Commands.Command<string>(UpdateCommission);
+            realm = Realm.GetInstance(MyRealmConfig.Get());
+            this._popUp = DependencyService.Get<IPopUp>();
             LoadPeons();
         }        
 
@@ -141,7 +146,6 @@ namespace Garimpo3.ViewModels.Productions
             var voidPeon = new Peon("Ninguém", "");
             AvailablePeons.Add(voidPeon);
 
-            var realm = Realm.GetInstance();
             var peons = realm.All<Peon>().Where(w => w.Active).OrderBy(a => a.Name);
 
             AvailablePeons.AddRange(peons);
@@ -149,10 +153,18 @@ namespace Garimpo3.ViewModels.Productions
 
         async Task Save()
         {
-            var realm = Realm.GetInstance();
+            var productionExists = realm.All<Production>().Any(w => w.Date == Date);
+
+            if (productionExists)
+            {
+                await _popUp.Dialog("Já existe uma despescada pra esse dia!");
+                return;
+            }
+
+
             var commissions = GetCommission();
             
-            var production = new Production(Date, Convert.ToDecimal(Amount));
+            var production = new Production(Date, Convert.ToDecimal(Amount), Constants.Partition);
 
             realm.Write(() =>
             {

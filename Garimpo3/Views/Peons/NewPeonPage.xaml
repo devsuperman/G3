@@ -15,8 +15,7 @@
             <Label Text="Nome" />
             <Entry Text="{Binding Name}"/>
 
-            <ActivityIndicator IsVisible="{Binding IsBusy}"
-                               IsRunning="{Binding IsBusy}"/>
+            <ActivityIndicator IsVisible="{Binding IsBusy}"/>
 
             <Button Text="Salvar"
                     IsEnabled="{Binding IsNotBusy}"

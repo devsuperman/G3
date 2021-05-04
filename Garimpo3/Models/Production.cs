@@ -11,10 +11,11 @@ namespace Garimpo3.Models
         {
 
         }
-        public Production(DateTimeOffset date, decimal amount)
+        public Production(DateTimeOffset date, decimal amount, string dredgeId)
         {
             Date = date;
             Amount = amount;
+            DredgeId = dredgeId;
         }
 
         [PrimaryKey, MapTo("_id")]
@@ -23,6 +24,8 @@ namespace Garimpo3.Models
         public string DateText => this.Date.ToLocalTime().DateTime.ToShortDateString();
         public decimal Amount { get; set; }
         public IList<Commission> Commissions { get; }
+        [Required]
+        public string DredgeId { get; set; }
 
         internal void Update(DateTimeOffset date, decimal amount)
         {
@@ -32,6 +35,7 @@ namespace Garimpo3.Models
 
         internal void AddCommission(Commission c)
         {
+            c.DredgeId = this.DredgeId;
             c.Peon.Balance += c.Value;
             this.Commissions.Add(c);
         }

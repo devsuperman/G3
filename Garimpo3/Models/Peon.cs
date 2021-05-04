@@ -23,9 +23,10 @@ namespace Garimpo3.Models
         public string Name { get; set; }
         public bool Active { get; set; } = true;
         public decimal Balance { get; set; }
-        
-        public IList<Payment> Payments { get; }
+        [Required]
         public string DredgeId { get; set; }
+
+        public IList<Payment> Payments { get; }
 
         internal void Update(string name, bool active)
         {

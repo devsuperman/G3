@@ -24,30 +24,7 @@ namespace Garimpo3.ViewModels.Peons
             Title = "Peões";
             AddPeonCommand = new AsyncCommand(AddPeon);
             DetailsPeonCommand = new AsyncCommand<Peon>(DetailsPeon);
-            SyncCommand = new AsyncCommand(Sync);
             LoadPeons();
-        }
-
-        private async Task Sync()
-        {
-            IsBusy = true;
-            try
-            {
-                var realm = await Repository.GetInstanceAsync();
-
-                var items = realm.All<Peon>();
-
-                foreach (var item in items)
-                    Peons.Add(item);
-            }
-            catch (Exception ex)
-            {
-                var msg = ex.Message;
-            }
-            finally
-            {
-                IsBusy = false;
-            }
         }
 
         async Task DetailsPeon(Peon peon)
@@ -62,7 +39,7 @@ namespace Garimpo3.ViewModels.Peons
         private void LoadPeons()
         {
             IsBusy = true;
-            var realm = Realm.GetInstance();
+            var realm = Realm.GetInstance(MyRealmConfig.Get());
 
             try
             {

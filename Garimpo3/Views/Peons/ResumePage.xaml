@@ -5,9 +5,11 @@
              xmlns:viewmodels="clr-namespace:Garimpo3.ViewModels.Peons"             
              x:DataType="viewmodels:ResumeViewModel"
              Title="Peão">
-    <ContentPage.Content>        
-        
+    <ContentPage.Content>
+
         <StackLayout Padding="20">
+            
+            <ActivityIndicator Color="Blue" IsVisible="{Binding IsBusy}"/>
             
             <Label Text="Nome"/>
             <Label Text="{Binding Name}"/>

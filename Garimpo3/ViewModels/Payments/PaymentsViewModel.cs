@@ -1,5 +1,7 @@
 ﻿using Garimpo3.Models;
+using Garimpo3.Services;
 using Garimpo3.Views.Payments;
+using Garimpo3.Views.Peons;
 using MongoDB.Bson;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
@@ -19,16 +21,19 @@ namespace Garimpo3.ViewModels.Payments
         public AsyncCommand AddPaymentCommand { get; }
         public AsyncCommand PaymentTappedCommand { get; }
         public string Id { get; }
+        Realm realm;
 
         public PaymentsViewModel(string id)
         {
+            IsBusy = true;
             var peonId = new ObjectId(id);
-            var realm = Realm.GetInstance();
+            realm = Realm.GetInstance(MyRealmConfig.Get());
             this.Payments = realm.Find<Peon>(peonId).Payments;
             AddPaymentCommand = new AsyncCommand(AddPayment);
             PaymentTappedCommand = new AsyncCommand(PaymentTapped);
             Id = id;
-            this._popUp = DependencyService.Get<Services.IPopUp>();
+            this._popUp = DependencyService.Get<IPopUp>();
+            IsBusy = false;
         }
 
         private async Task PaymentTapped()
@@ -43,14 +48,19 @@ namespace Garimpo3.ViewModels.Payments
             if (!confirm)
                 return;
 
-            DeletePayment();
+            await DeletePayment();
         }
 
-        private void DeletePayment()
+        private async Task DeletePayment()
         {
-            var realm = Realm.GetInstance();
             var peon = realm.Find<Peon>(new ObjectId(Id));
+            
             realm.Write(() => peon.RemovePayment(SelectedPayment));
+
+            var route = $"{nameof(DetailsPeonPage)}?id={peon.Id}";
+            await Shell.Current.GoToAsync(route);
+
+            realm.Dispose();
         }
 
         private async Task AddPayment()

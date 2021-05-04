@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Garimpo3.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Garimpo3.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TestPage : TabbedPage
+    public partial class HomePage : ContentPage
     {
-        public TestPage()
+        public HomePage()
         {
             InitializeComponent();
+            BindingContext = new HomeViewModel();
         }
     }
 }

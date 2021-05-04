@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Garimpo3.Models;
+using Garimpo3.Services;
 using MongoDB.Bson;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
@@ -30,11 +31,12 @@ namespace Garimpo3.ViewModels.Payments
         async Task Save()
         {
             IsBusy = true;
-            var realm = Realm.GetInstance();
+            var realm = Realm.GetInstance(MyRealmConfig.Get());
             var peon = realm.Find<Peon>(new ObjectId(Id));
 
-            realm.Write(() => peon.AddPayment(Date, decimal.Parse(Vaalue)));            
+            realm.Write(() => peon.AddPayment(Date, decimal.Parse(Vaalue)));
 
+            realm.Dispose();
             await Shell.Current.GoToAsync("..");
 
             IsBusy = false;

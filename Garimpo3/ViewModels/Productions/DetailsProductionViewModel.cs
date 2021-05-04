@@ -1,4 +1,5 @@
 ﻿using Garimpo3.Models;
+using Garimpo3.Services;
 using MongoDB.Bson;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
@@ -26,7 +27,7 @@ namespace Garimpo3.ViewModels.Productions
 
             DeleteCommand = new AsyncCommand(Delete);
 
-            realm = Realm.GetInstance();
+            realm = Realm.GetInstance(MyRealmConfig.Get());
             var production = realm.Find<Production>(new ObjectId(productionId));
 
             Date = production.DateText;

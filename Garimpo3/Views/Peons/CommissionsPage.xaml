@@ -8,7 +8,9 @@
 
 
     <StackLayout Padding="20">
-        
+
+        <ActivityIndicator Color="Blue" IsVisible="{Binding IsBusy}"/>
+
         <ListView ItemsSource="{Binding Commissions}" CachingStrategy="RecycleElement" SelectionMode="None">
 
             <ListView.ItemTemplate>

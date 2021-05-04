@@ -1,8 +1,10 @@
 ﻿using Garimpo3.Models;
+using Garimpo3.Services;
 using MongoDB.Bson;
 using MvvmHelpers;
 using Realms;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Garimpo3.ViewModels.Peons
 {
@@ -11,9 +13,14 @@ namespace Garimpo3.ViewModels.Peons
         public IQueryable<Commission> Commissions { get; }
         public CommissionsViewModel(string id)
         {
-            var realm = Realm.GetInstance();
+            IsBusy = true;
+
+            var realm = Realm.GetInstance(MyRealmConfig.Get());
+
             var peonId = new ObjectId(id);
             this.Commissions = realm.All<Commission>().Where(w => w.PeonId == peonId);
+
+            IsBusy = false;
         }
     }
 }

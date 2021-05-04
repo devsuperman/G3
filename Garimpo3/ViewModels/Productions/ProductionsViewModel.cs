@@ -42,8 +42,7 @@ namespace Garimpo3.ViewModels.Productions
             try
             {
                 Productions.Clear();
-                var realm = Realm.GetInstance();
-
+                var realm = Realm.GetInstance(MyRealmConfig.Get());
                 var items = realm.All<Production>();
                 
                 foreach (var item in items)
