@@ -31,7 +31,7 @@ namespace Garimpo3.ViewModels.Payments
         async Task Save()
         {
             IsBusy = true;
-            var realm = Realm.GetInstance(MyRealmConfig.Get());
+            var realm = Realm.GetInstance(MyRealmConfig.GetConfig());
             var peon = realm.Find<Peon>(new ObjectId(Id));
 
             realm.Write(() => peon.AddPayment(Date, decimal.Parse(Vaalue)));

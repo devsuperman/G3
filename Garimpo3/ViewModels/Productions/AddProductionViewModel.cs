@@ -101,7 +101,7 @@ namespace Garimpo3.ViewModels.Productions
             Title = "Nova Despescada";
             SaveCommand = new AsyncCommand(Save);
             UpdateCommissionCommand = new MvvmHelpers.Commands.Command<string>(UpdateCommission);
-            realm = Realm.GetInstance(MyRealmConfig.Get());
+            realm = Realm.GetInstance(MyRealmConfig.GetConfig());
             this._popUp = DependencyService.Get<IPopUp>();
             LoadPeons();
         }        
@@ -164,7 +164,7 @@ namespace Garimpo3.ViewModels.Productions
 
             var commissions = GetCommission();
             
-            var production = new Production(Date, Convert.ToDecimal(Amount), Constants.Partition);
+            var production = new Production(Date, Convert.ToDecimal(Amount), MyRealmConfig.DredgeId());
 
             realm.Write(() =>
             {

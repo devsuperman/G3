@@ -2,6 +2,7 @@
 using Garimpo3.Views.Peons;
 using Garimpo3.Views.Payments;
 using Xamarin.Forms;
+using Garimpo3.Views;
 
 namespace Garimpo3
 {
@@ -10,6 +11,7 @@ namespace Garimpo3
         public AppShell()
         {
             InitializeComponent();
+
             Routing.RegisterRoute(nameof(NewPeonPage), typeof(NewPeonPage));
             Routing.RegisterRoute(nameof(DetailsPeonPage), typeof(DetailsPeonPage));
             Routing.RegisterRoute(nameof(EditPeonPage), typeof(EditPeonPage));

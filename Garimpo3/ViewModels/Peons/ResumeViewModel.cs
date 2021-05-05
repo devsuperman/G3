@@ -25,7 +25,7 @@ namespace Garimpo3.ViewModels.Peons
 
             IsBusy = true;
 
-            var config = Task.Run(() => MyRealmConfig.Get()).Result;
+            var config = Task.Run(() => MyRealmConfig.GetConfig()).Result;
             var realm = Realm.GetInstance(config);
 
             var peon = realm.Find<Peon>(new ObjectId(id));

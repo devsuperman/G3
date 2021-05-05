@@ -27,7 +27,7 @@ namespace Garimpo3.ViewModels.Payments
         {
             IsBusy = true;
             var peonId = new ObjectId(id);
-            realm = Realm.GetInstance(MyRealmConfig.Get());
+            realm = Realm.GetInstance(MyRealmConfig.GetConfig());
             this.Payments = realm.Find<Peon>(peonId).Payments;
             AddPaymentCommand = new AsyncCommand(AddPayment);
             PaymentTappedCommand = new AsyncCommand(PaymentTapped);

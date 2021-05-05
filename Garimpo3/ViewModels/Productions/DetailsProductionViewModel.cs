@@ -27,7 +27,7 @@ namespace Garimpo3.ViewModels.Productions
 
             DeleteCommand = new AsyncCommand(Delete);
 
-            realm = Realm.GetInstance(MyRealmConfig.Get());
+            realm = Realm.GetInstance(MyRealmConfig.GetConfig());
             var production = realm.Find<Production>(new ObjectId(productionId));
 
             Date = production.DateText;

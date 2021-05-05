@@ -39,7 +39,7 @@ namespace Garimpo3.ViewModels.Peons
         private void LoadPeons()
         {
             IsBusy = true;
-            var realm = Realm.GetInstance(MyRealmConfig.Get());
+            var realm = Realm.GetInstance(MyRealmConfig.GetConfig());
 
             try
             {

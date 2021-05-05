@@ -11,6 +11,7 @@
                 HorizontalOptions="CenterAndExpand" />
 
             <Button Text="Sincronizar" Command="{Binding UpdateRealmCommand}" IsEnabled="{Binding IsNotBusy}"/>
+            <Button Text="Logout" Command="{Binding LogoutCommand}" IsEnabled="{Binding IsNotBusy}"/>
 
         </StackLayout>
     </ContentPage.Content>

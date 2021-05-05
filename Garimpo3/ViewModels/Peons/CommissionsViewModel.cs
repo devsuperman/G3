@@ -15,7 +15,7 @@ namespace Garimpo3.ViewModels.Peons
         {
             IsBusy = true;
 
-            var realm = Realm.GetInstance(MyRealmConfig.Get());
+            var realm = Realm.GetInstance(MyRealmConfig.GetConfig());
 
             var peonId = new ObjectId(id);
             this.Commissions = realm.All<Commission>().Where(w => w.PeonId == peonId);

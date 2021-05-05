@@ -22,9 +22,9 @@ namespace Garimpo3.ViewModels.Peons
 
         async Task Save()
         {
-            var peon = new Peon(Name, "alcon");
+            var peon = new Peon(Name, MyRealmConfig.DredgeId());
 
-            var realm = Realm.GetInstance(MyRealmConfig.Get());
+            var realm = Realm.GetInstance(MyRealmConfig.GetConfig());
 
             realm.Write(() => realm.Add(peon));
 

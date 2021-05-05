@@ -28,6 +28,10 @@
         </ResourceDictionary>
     </Shell.Resources>
 
+    <ShellItem Route="LoginPage">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" />
+    </ShellItem>
+
     <TabBar>
         <ShellContent Title="Início" Icon="icon_about.png" Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" />
         <ShellContent Title="Despescadas" Icon="icon_about.png" Route="ProductionsPage" ContentTemplate="{DataTemplate productions:ProductionsPage}" />
@@ -35,3 +39,5 @@
     </TabBar>
     
 </Shell>
+
+    

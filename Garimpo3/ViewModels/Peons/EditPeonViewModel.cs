@@ -26,7 +26,7 @@ namespace Garimpo3.ViewModels.Peons
             this.id = id;
             Title = "Editar Peão";
             SaveCommand = new AsyncCommand(Save);
-            realm = Realm.GetInstance(MyRealmConfig.Get());
+            realm = Realm.GetInstance(MyRealmConfig.GetConfig());
             LoadPeon();
         }
         void LoadPeon()
